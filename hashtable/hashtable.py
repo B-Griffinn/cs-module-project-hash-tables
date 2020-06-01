@@ -2,6 +2,7 @@ class HashTableEntry:
     """
     Linked List hash table key/value pair
     """
+
     def __init__(self, key, value):
         self.key = key
         self.value = value
@@ -10,6 +11,8 @@ class HashTableEntry:
 
 # Hash table can't have fewer than this many slots
 MIN_CAPACITY = 8
+# Head needs to initialize at None
+head = None
 
 
 class HashTable:
@@ -20,9 +23,11 @@ class HashTable:
     Implement this.
     """
 
-    def __init__(self, capacity):
+    def __init__(self, capacity=MIN_CAPACITY):
         # Your code here
-
+        # initiate our table with an array
+        self.capacity = capacity
+        self.array = [None] * capacity
 
     def get_num_slots(self):
         """
@@ -35,7 +40,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        return len(self.array)
 
     def get_load_factor(self):
         """
@@ -44,7 +49,6 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
 
     def fnv1(self, key):
         """
@@ -55,23 +59,30 @@ class HashTable:
 
         # Your code here
 
-
     def djb2(self, key):
         """
+        a String hash function
         DJB2 hash, 32-bit
 
         Implement this, and/or FNV-1.
         """
         # Your code here
+        string_bytes = key.encode()
+        total = 0
 
+        for b in string_bytes:
+            total += b
+        return total
 
     def hash_index(self, key):
         """
         Take an arbitrary key and return a valid integer index
         between within the storage capacity of the hash table.
         """
-        #return self.fnv1(key) % self.capacity
-        return self.djb2(key) % self.capacity
+
+        hash_value = self.djb2(key)
+        # return self.fnv1(key) % self.capacity
+        return hash_value % len(self.array)
 
     def put(self, key, value):
         """
@@ -81,8 +92,20 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        global head
+        # Linked List approach
+        # create new node with key value
+        n = HashTableEntry(key, value)
 
+        n.next = head
+
+        head = n
+
+        return n
+
+        # Your NAIVE code here
+        # slot = self.hash_index(key)
+        # self.array[slot] = HashTableEntry(key, value)
 
     def delete(self, key):
         """
@@ -93,7 +116,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
+        self.put(key, None)
 
     def get(self, key):
         """
@@ -104,7 +127,15 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        slot = self.hash_index(key)
+        hash_entry = self.array[slot]
 
+        # check if hash entry is present in hash list
+        if hash_entry is not None:
+            return hash_entry.value
+
+        # if hash_entry does not exists return none
+        return None
 
     def resize(self, new_capacity):
         """
@@ -114,7 +145,6 @@ class HashTable:
         Implement this.
         """
         # Your code here
-
 
 
 if __name__ == "__main__":
