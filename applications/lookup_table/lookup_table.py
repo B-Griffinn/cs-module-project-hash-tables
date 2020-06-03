@@ -1,3 +1,5 @@
+import math
+import random
 # Your code here
 
 
@@ -9,6 +11,10 @@ def slowfun_too_slow(x, y):
 
     return v
 
+
+cache = {}
+
+
 def slowfun(x, y):
     """
     Rewrite slowfun_too_slow() in here so that the program produces the same
@@ -16,10 +22,16 @@ def slowfun(x, y):
     """
     # Your code here
 
+    for i in range(x, y):
+        cache[i] = math.pow(x, y)
+        cache[i] = math.factorial(cache[i])
+        cache[i] //= (x + y)
+        cache[i] %= 982451653
+
+        # return cache[i]
 
 
 # Do not modify below this line!
-
 for i in range(50000):
     x = random.randrange(2, 14)
     y = random.randrange(3, 6)
