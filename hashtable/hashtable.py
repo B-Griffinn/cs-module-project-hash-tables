@@ -48,6 +48,7 @@ class HashTable:
         # UPDATE OUR STORAGE, HASH TABLE, LIST TO BE MADE UP OF A LL
         # self.array = [LinkedList()] * capacity
         self.array = [None] * capacity
+        self.size = 0
 
     def get_num_slots(self):
         """
@@ -144,21 +145,31 @@ class HashTable:
         index = self.hash_index(key)
 
         # store our var out of loop before effecting it
-        delete_me = []
 
         if self.array[index] == None:
             return None
 
+        # store found key in an arr to delete outside of our loop
+        delete_me = ""
+
+        # loop thru the entire list
         for i in range(0, len(self.array[index])):
-            for i in self.array[index]:
-                # if self.array[index][j][0] == key:
-                delete_me.append(i)
+            # loop thru each bucket
+            for j in self.array[index]:
+                print("self.array[index][i]", [j])
+                # if we find the bucket appent it to our delete_me list to be deleted later
+                if [j][0][0] == key:
+                    # set value to none
+                    [j][0][1] = None
+                    return [j][0]
+                else:
+                    return None
 
-        self.array.remove(delete_me)
+            print('self.array[index] in delete() ~~> ', self.array[index])
 
-        print('DELETE ME')
+            print('self.array in delete() ~~> ', self.array)
 
-        # Your code here
+        # DAY 1
         # self.put(key, None)
 
     def get(self, key):
@@ -201,20 +212,45 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        # udpate our objects current capacity to the given capacity
+        self.capacity = new_capacity
+
+        # create new array to store newly hashed items in a fresh hash table
+        new_arr = [None] * new_capacity
+
+        # loop through original hash table storage
+
+        for s in self.array:
+            # save our first item in each bucket
+            cur = s[0]
+
+            # loop thru lists while cur exists
+            while cur is not None:
+                # rehash our index
+                index = self.hash_index(cur[0])
+
+                # check if our index has a key:value or none
+                if new_arr[index][cur] == None:
+                    # create new hempty arr
+                    new_arr[index][cur] = []
+                else:
+                    # add the new node to the arr
+                    new_arr[index].append([cur[0], cur[1]])
+                cur += 1
+        self.array = new_arr
 
 
 ht = HashTable(10)
-print("PUT return", ht.put("dogs", "are cool"))
-print("PUT return", ht.put("hello world", "goodbye!!"))
-print("PUT return", ht.put("cats", "are fine"))
-print("PUT return", ht.put("i love", "pizza"))
-print("PUT return", ht.put("hello", "ben"))
+print("PUT return ~~> ", ht.put("dogs", "are cool"))
+print("PUT return ~~> ", ht.put("hello world", "goodbye!!"))
+print("PUT return ~~> ", ht.put("cats", "are fine"))
+print("PUT return ~~> ", ht.put("i love", "pizza"))
+print("PUT return ~~> ", ht.put("hello", "ben"))
 
-print('GET', ht.get("hello"))
 
-print('GET', ht.get("cats"))
-print("DEL", ht.delete("cats"))
-print('GET', ht.get("cats"))
+print(f'\nBefore Delete: GET cats ~~> {ht.get("cats")}\n')
+print(f"\nDeleting cats ~~> {ht.delete('cats')}\n")
+print(f'AD: GET cats~~> {ht.get("cats")}\n')
 
 
 # if __name__ == "__main__":
