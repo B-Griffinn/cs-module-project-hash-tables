@@ -112,26 +112,38 @@ class HashTable:
         Hash collisions should be handled with Linked List Chaining.
         Implement this.
         """
+        index = self.hash_index(key)
+
+        hash_entry = self.array[index]
+
+        # we want to store a (key, val) at an index
+        # if key exists overwrite value
+        ##
+        # if we find collision:
+        #
+        # new_node = create HTE(key, val)
+        # new_node.next = hash_entry
+        # self.arr[index] = new_node
 
         # Your NAIVE code here
         # slot = self.hash_index(key)
         # self.array[slot] = HashTableEntry(key, value)
 
-        # Find the hash index
-        index = self.hash_index(key)
+        # # Find the hash index
+        # index = self.hash_index(key)
 
-        if self.array[index] == None:
-            # set empty arr
-            self.array[index] = []
-            # print("self.array[index]", self.array[index])
-        self.array[index].append([key, value])
-        # print("AFTER", self.array[index])
+        # if self.array[index] == None:
+        #     # set empty arr
+        #     self.array[index] = []
+        #     # print("self.array[index]", self.array[index])
+        # self.array[index].append([key, value])
+        # # print("AFTER", self.array[index])
 
-        for i in range(0, len(self.array[index])):
-            if self.array[index][i][0] == key:
-                self.array[index][i][1] = value
+        # for i in range(0, len(self.array[index])):
+        #     if self.array[index][i][0] == key:
+        #         self.array[index][i][1] = value
 
-        return index
+        # return index
 
     def delete(self, key):
         """
