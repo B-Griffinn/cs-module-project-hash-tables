@@ -143,6 +143,21 @@ class HashTable:
         # find the hash index
         index = self.hash_index(key)
 
+        # store our var out of loop before effecting it
+        delete_me = []
+
+        if self.array[index] == None:
+            return None
+
+        for i in range(0, len(self.array[index])):
+            for i in self.array[index]:
+                # if self.array[index][j][0] == key:
+                delete_me.append(i)
+
+        self.array.remove(delete_me)
+
+        print('DELETE ME')
+
         # Your code here
         # self.put(key, None)
 
