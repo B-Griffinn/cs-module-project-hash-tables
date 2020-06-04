@@ -9,26 +9,30 @@ PLAN
 
 
 def no_dups(s):
-    # create a cache to quicly create a way to count dupes similar to word count
-    count_dupes = {}
-    # create a list that will return our original input order without the dupes
-    dupe_free = []
+    dupes_cache = {}
 
-    # split our sentence on a space
-    split_str = s.split()
+    # create a var for our non_dupes cache
+    non_dupes = []
 
-    # base case if our input is empty
+    # split our input
+    split_sentence = s.split()
+    # print(split_sentence)
+
+    # base case if input is empty
     if s == "":
         return ""
 
-    # loop thru the sentence word by word
-    for i in split_str:
-        # if a word is not in the cache
-        if i not in count_dupes:
-            count_dupes[i] = 1
-            dupe_free.append(i)
+    # loop throuh our split sentence var
+    for i in split_sentence:
+        # check if our index is not in the cache yet
+        # if not in, add it
+        # then append that item to our list which avoids dupes bc we never get here in index is in cache
+        if i not in dupes_cache:
+            dupes_cache[i] = 1
+            non_dupes.append(i)
 
-    return ' '.join(dupe_free)
+    # GOTCHA we needed to join our sentenct back with a space
+    return ' '.join(non_dupes)
 
 
 if __name__ == "__main__":
