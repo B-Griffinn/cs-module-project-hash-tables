@@ -3,13 +3,13 @@ import random
 # Your code here
 
 
-def slowfun_too_slow(x, y):
-    v = math.pow(x, y)
-    v = math.factorial(v)
-    v //= (x + y)
-    v %= 982451653
+# def slowfun_too_slow(x, y):
+#     v = math.pow(x, y)
+#     v = math.factorial(v)
+#     v //= (x + y)
+#     v %= 982451653
 
-    return v
+#     return v
 
 
 cache = {}
