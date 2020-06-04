@@ -1,8 +1,8 @@
-# with open('robin.txt', 'r') as f:
-#     read_file = f.read()
-#     split_file = read_file.split()
+with open('robin.txt', 'r') as f:
+    read_file = f.read()
+    split_file = read_file.split()
 
-#     # print(split_file)
+    # print(split_file)
 
 # the = []
 # for i in split_file:
@@ -10,7 +10,7 @@
 #     if i == "the":
 #         the.append('#')
 
-# # print(''.join(the))
+# print(''.join(the))
 
 
 """ 
@@ -60,23 +60,29 @@ def histogram(s):
     # create a new list out of our dict.items() and assign to var
     items = list(cache.items())
 
+    # TODO i need a function that can be passed to sort that will allow me to
+
     # take that list and sort it by preference
-    # items.sort(key=lambda e: e[1])
     # SORT BY ALPHA
     items.sort(key=lambda e: e[0])
+    items.sort(reverse=True, key=lambda e: e[1])
 
     # once
     for j in cache:
-        print(f"HERE {j}......{cache[j] * '#'}")
+        print(f"   {cache[j] * '#'}")
 
-    return f"\n return {items}\n"
-
-# s = file
+    # return f"\nItems: {items}\n"
+    return 'End'
 
 
 if __name__ == "__main__":
-    # print(word_count(""))
-    # print(word_count("Hello"))
-    # print(word_count('Hello, my cat. And my cat doesn\'t say "hello" back.'))
+    #     print(histogram(""))
+    #     print(histogram("Hello"))
+    #     print(histogram('Hello, my cat. And my cat doesn\'t say "hello" back.'))
 
-    print(histogram('Hello, my cat.  And my cat doesn\'t say "hello" back.'))
+    print(histogram(
+        'Hello, Hello Hello Hello Hello Hello Hello my cat.  And my cat doesn\'t say "hello" back.'))
+
+# joined = ' '.join(split_file)
+# # print(type(joined))
+# print(histogram(joined))
