@@ -6,9 +6,9 @@ with open("input.txt") as f:
     split_words = words.split()
     # print(split_words, end=" ")
 
-# TODO: analyze which words can follow other words
+# 2. TODO: analyze which words can follow other words
 # Your code here
-""" 
+"""
 POPULAR WORDS in TXT file
 kitten
 the
@@ -18,16 +18,28 @@ day
 """
 
 # build a list for words that can follow other words
-words_that_follow = "kitten the little sleep day"
-split_follow_words = words_that_follow.split()
-# print(split_follow_words)
+words_that_follow = '"kitten?" The. Little" sleep!" day!'
 
-start_word = random.choice(split_words)
-# print(type(start_word))
-# print(start_word[0])
-if start_word[0].isupper() == True:
-    print(start_word[0])
-# print("START WORD", start_word)
+# split the words_that_follow in order to check a list
+split_this = words_that_follow.split()
+# test_list = random.choice(split_this)
+
+
+# Create a start word at random from our split_words list
+word_list = random.choice(split_words)
+
+# create vars for start and stop words
+start = ""
+stop = ""
+
+# check which words are start words
+if (word_list[0].isupper() == True) or (word_list[0] == '\"'):
+    start = word_list
+    print(start)
+
+stop_puncs = ['.', '?', '!', '"', '."', '?"', '!"']
+if (word_list[-1] in stop_puncs):
+    print(word_list)
 
 
 # TODO: construct 5 random sentences
