@@ -22,7 +22,7 @@ def word_count(s):
     # loop thru the split str
     for i in new_s:
         # lowercase our items for output
-        i = i.lower()
+        # i = i.lower()
         # check if that word is in our cache
         if i in cache:
             # if so add 1 to the cache index
