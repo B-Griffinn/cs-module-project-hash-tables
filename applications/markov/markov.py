@@ -35,12 +35,22 @@ stop = ""
 # check which words are start words
 if (word_list[0].isupper() == True) or (word_list[0] == '\"'):
     start = word_list
-    print(start)
+    # print('START', start)
+
 
 stop_puncs = ['.', '?', '!', '"', '."', '?"', '!"']
 if (word_list[-1] in stop_puncs):
-    print(word_list)
-
+    stop = word_list
+    # print('STOP', stop)
 
 # TODO: construct 5 random sentences
 # Your code here
+for i in word_list:
+    if i is start:
+        print(f"{start} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)}")
+        print(f"{start} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)}")
+        print(f"{start} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)}")
+        print(f"{start} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)}")
+        print(f"{start} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)} {random.choice(split_words)}")
+    else:
+        break
