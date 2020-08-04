@@ -52,9 +52,12 @@ array = [
     [[76, 0], 18],
 ]
 
+for i in array:
+    print(i)
+
 # we need to loop thru the entire list `array`
 # ??? we need to somehow check if we are still in a nested for loop before finding the min value ???
 
-for i in array:
+# for i in array:
     # i == each index which is truly another list that may or may not hold a nested list...
     # how do I check if my index has a nested list?
